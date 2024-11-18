@@ -26,10 +26,11 @@ app.use("/api/notification", notificationRouter);
 
 // Serve static files from React app (only in production)
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "client", "build")));
-  
+  app.use(express.static(path.join(__dirname, "../client/build")));  // Corrected path to 'build'
+
+  // Serve the React index.html for all other requests
   app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+    res.sendFile(path.resolve(__dirname, "../client/build", "index.html"));  // Corrected path to 'build'
   });
 }
 
